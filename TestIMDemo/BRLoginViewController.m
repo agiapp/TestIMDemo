@@ -40,8 +40,11 @@
     [[EMClient sharedClient] loginWithUsername:username password:password completion:^(NSString *aUsername, EMError *aError) {
         if (!aError) {
             NSLog(@"登录成功：%@", aUsername);
+            NSLog(@"沙盒路径：%@", NSHomeDirectory());
             // 开启自动登录
             [[EMClient sharedClient].options setIsAutoLogin:YES];
+            // 进入主界面（拿到 Main.storyboard 箭头所指的控制器，即 tabBarController）
+            self.view.window.rootViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateInitialViewController];
         } else {
             NSLog(@"登录失败：%@", aError);
         }
