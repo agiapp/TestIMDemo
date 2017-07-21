@@ -384,7 +384,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/TestIMDemo/HyphenateFullSDK",
 				);
-				GCC_PREFIX_HEADER = /Users/renbo/Documents/TestIMDemo/TestIMDemo/PrefixHeader.pch;
+				GCC_PREFIX_HEADER = "$(PRODUCT_NAME)/PrefixHeader.pch";
 				INFOPLIST_FILE = TestIMDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -406,7 +406,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/TestIMDemo/HyphenateFullSDK",
 				);
-				GCC_PREFIX_HEADER = /Users/renbo/Documents/TestIMDemo/TestIMDemo/PrefixHeader.pch;
+				GCC_PREFIX_HEADER = "$(PRODUCT_NAME)/PrefixHeader.pch";
 				INFOPLIST_FILE = TestIMDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -439,6 +439,7 @@
 				C5F6C9C11F208F05002B0C97 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
