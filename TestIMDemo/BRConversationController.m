@@ -8,7 +8,7 @@
 
 #import "BRConversationController.h"
 
-@interface BRConversationController ()
+@interface BRConversationController ()<EMClientDelegate>
 
 @end
 
@@ -16,18 +16,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    // 设置代理
+    [[EMClient sharedClient] addDelegate:self delegateQueue:nil];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+#pragma mark - EMClientDelegate
+// 监听网络状态（类似于AFNetworking提供的监听网络状态）
+- (void)connectionStateDidChange:(EMConnectionState)aConnectionState {
+    if (aConnectionState == EMConnectionDisconnected) {
+        NSLog(@"网络断开，未连接...");
+        self.navigationItem.title = @"未连接";
+    } else {
+        NSLog(@"网络通了，已连接...");
+        self.navigationItem.title = @"会话";
+    }
 }
+
 
 #pragma mark - Table view data source
 
