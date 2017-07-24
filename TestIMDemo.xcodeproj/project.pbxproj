@@ -19,6 +19,8 @@
 		C5F6CB791F20A643002B0C97 /* Hyphenate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5F6C9C91F208FF7002B0C97 /* Hyphenate.framework */; };
 		C5F6CB7A1F20A643002B0C97 /* Hyphenate.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C5F6C9C91F208FF7002B0C97 /* Hyphenate.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C5F6CB7F1F21F427002B0C97 /* BRConversationController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F6CB7E1F21F427002B0C97 /* BRConversationController.m */; };
+		C5F6CB891F25E6C5002B0C97 /* BRAddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F6CB881F25E6C5002B0C97 /* BRAddFriendViewController.m */; };
+		C5F6CB8C1F260867002B0C97 /* BRAddressBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F6CB8B1F260867002B0C97 /* BRAddressBookViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -54,6 +56,10 @@
 		C5F6CB751F20A204002B0C97 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		C5F6CB7D1F21F427002B0C97 /* BRConversationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRConversationController.h; sourceTree = "<group>"; };
 		C5F6CB7E1F21F427002B0C97 /* BRConversationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRConversationController.m; sourceTree = "<group>"; };
+		C5F6CB871F25E6C5002B0C97 /* BRAddFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRAddFriendViewController.h; sourceTree = "<group>"; };
+		C5F6CB881F25E6C5002B0C97 /* BRAddFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRAddFriendViewController.m; sourceTree = "<group>"; };
+		C5F6CB8A1F260867002B0C97 /* BRAddressBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRAddressBookViewController.h; sourceTree = "<group>"; };
+		C5F6CB8B1F260867002B0C97 /* BRAddressBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRAddressBookViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,8 +115,9 @@
 		C5F6C9C21F208F11002B0C97 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				C5F6CB7C1F21F3D5002B0C97 /* Conversation【会话】 */,
 				C5F6C9CF1F209BC1002B0C97 /* Login */,
+				C5F6CB7C1F21F3D5002B0C97 /* Conversation【会话】 */,
+				C5F6CB801F25E5B3002B0C97 /* AddressBook【通讯录】 */,
 				C5F6C9C31F208F22002B0C97 /* Xib */,
 				C5F6C9C41F208F29002B0C97 /* Other */,
 				C5F6C9C71F208F86002B0C97 /* Lib */,
@@ -190,10 +197,69 @@
 		C5F6CB7C1F21F3D5002B0C97 /* Conversation【会话】 */ = {
 			isa = PBXGroup;
 			children = (
+				C5F6CB831F25E655002B0C97 /* Model */,
+				C5F6CB821F25E64D002B0C97 /* View */,
+				C5F6CB811F25E630002B0C97 /* ViewController */,
+			);
+			name = "Conversation【会话】";
+			sourceTree = "<group>";
+		};
+		C5F6CB801F25E5B3002B0C97 /* AddressBook【通讯录】 */ = {
+			isa = PBXGroup;
+			children = (
+				C5F6CB861F25E68D002B0C97 /* Model */,
+				C5F6CB851F25E687002B0C97 /* View */,
+				C5F6CB841F25E66C002B0C97 /* ViewController */,
+			);
+			name = "AddressBook【通讯录】";
+			sourceTree = "<group>";
+		};
+		C5F6CB811F25E630002B0C97 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
 				C5F6CB7D1F21F427002B0C97 /* BRConversationController.h */,
 				C5F6CB7E1F21F427002B0C97 /* BRConversationController.m */,
 			);
-			name = "Conversation【会话】";
+			name = ViewController;
+			sourceTree = "<group>";
+		};
+		C5F6CB821F25E64D002B0C97 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		C5F6CB831F25E655002B0C97 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		C5F6CB841F25E66C002B0C97 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C5F6CB8A1F260867002B0C97 /* BRAddressBookViewController.h */,
+				C5F6CB8B1F260867002B0C97 /* BRAddressBookViewController.m */,
+				C5F6CB871F25E6C5002B0C97 /* BRAddFriendViewController.h */,
+				C5F6CB881F25E6C5002B0C97 /* BRAddFriendViewController.m */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
+		C5F6CB851F25E687002B0C97 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		C5F6CB861F25E68D002B0C97 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -272,8 +338,10 @@
 			files = (
 				C5F6C9B31F208F05002B0C97 /* ViewController.m in Sources */,
 				C5F6C9B01F208F05002B0C97 /* AppDelegate.m in Sources */,
+				C5F6CB891F25E6C5002B0C97 /* BRAddFriendViewController.m in Sources */,
 				C5F6C9D51F209C05002B0C97 /* BRLoginViewController.m in Sources */,
 				C5F6CB7F1F21F427002B0C97 /* BRConversationController.m in Sources */,
+				C5F6CB8C1F260867002B0C97 /* BRAddressBookViewController.m in Sources */,
 				C5F6C9AD1F208F05002B0C97 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -57,6 +57,51 @@
             </objects>
             <point key="canvasLocation" x="593" y="-826"/>
         </scene>
+        <!--添加好友-->
+        <scene sceneID="Qkl-Ys-LGK">
+            <objects>
+                <viewController id="u32-7C-KcE" customClass="BRAddFriendViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dXz-zr-ZnK"/>
+                        <viewControllerLayoutGuide type="bottom" id="wqT-Uw-Ojs"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="w2Y-bM-3cw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入要查找的好友" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="E6t-3E-PdK">
+                                <rect key="frame" x="10" y="74" width="355" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="hHB-Nn-Xc7"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="E6t-3E-PdK" firstAttribute="leading" secondItem="w2Y-bM-3cw" secondAttribute="leading" constant="10" id="Jld-1v-vTg"/>
+                            <constraint firstItem="E6t-3E-PdK" firstAttribute="top" secondItem="dXz-zr-ZnK" secondAttribute="bottom" constant="10" id="Qy1-KE-zw7"/>
+                            <constraint firstAttribute="trailing" secondItem="E6t-3E-PdK" secondAttribute="trailing" constant="10" id="UfX-T9-yYk"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="添加好友" id="vfc-yB-5RZ">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="search" id="cWt-ez-zkQ">
+                            <color key="tintColor" red="0.37610371479999999" green="0.79966806989999994" blue="0.64128550959999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="clickAddFriendBtn:" destination="u32-7C-KcE" id="WXs-hG-z5n"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="textField" destination="E6t-3E-PdK" id="vD0-1L-GqS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c43-2h-MFk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1313" y="-132"/>
+        </scene>
         <!--通讯录-->
         <scene sceneID="h97-qH-TYl">
             <objects>
@@ -80,7 +125,14 @@
                             <outlet property="delegate" destination="VU1-jH-fh3" id="CBM-Bs-Jjp"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="通讯录" id="coY-95-VEn"/>
+                    <navigationItem key="navigationItem" title="通讯录" id="coY-95-VEn">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="add" id="Vx2-uK-fXQ">
+                            <color key="tintColor" red="0.37610371479999999" green="0.79966806989999994" blue="0.64128550959999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <segue destination="u32-7C-KcE" kind="push" id="tBU-qb-9Iz"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aqN-gb-8xt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -90,7 +142,7 @@
         <scene sceneID="d16-Vb-lLB">
             <objects>
                 <navigationController id="x0v-4C-w7E" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="通讯录" id="juv-N7-n1w"/>
+                    <tabBarItem key="tabBarItem" title="通讯录" image="tabbar_contacts" id="juv-N7-n1w"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dKD-Jw-zb6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -136,7 +188,7 @@
         <scene sceneID="hse-kn-s1F">
             <objects>
                 <navigationController id="MYC-Bd-zvg" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="设置" id="LCz-pA-snx"/>
+                    <tabBarItem key="tabBarItem" title="设置" image="tabbar_setting" id="LCz-pA-snx"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="S0O-ZF-E7K">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -153,7 +205,7 @@
         <scene sceneID="bO5-Le-wNQ">
             <objects>
                 <navigationController id="taU-Sb-Nmg" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="会话" id="0e0-Nd-vTf"/>
+                    <tabBarItem key="tabBarItem" title="会话" image="tabbar_chats" id="0e0-Nd-vTf"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="iyp-2S-A4w">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -167,4 +219,9 @@
             <point key="canvasLocation" x="-362" y="-826"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="tabbar_chats" width="20" height="18"/>
+        <image name="tabbar_contacts" width="20" height="18"/>
+        <image name="tabbar_setting" width="20" height="20"/>
+    </resources>
 </document>
