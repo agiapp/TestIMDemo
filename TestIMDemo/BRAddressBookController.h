@@ -1,5 +1,5 @@
 //
-//  BRAddressBookViewController.h
+//  BRAddressBookController.h
 //  TestIMDemo
 //
 //  Created by 任波 on 2017/7/24.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BRAddressBookViewController : UIViewController
+@interface BRAddressBookController : UITableViewController
 
 @end
