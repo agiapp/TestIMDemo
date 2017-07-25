@@ -21,6 +21,7 @@
     [self.logoutBtn setTitle:title forState:UIControlStateNormal];
 }
 
+#pragma mark - 退出登录
 - (IBAction)clickLogoutBtn:(id)sender {
     NSLog(@"退出登录");
     [[EMClient sharedClient] logout:YES completion:^(EMError *aError) {
@@ -32,6 +33,5 @@
         }
     }];
 }
-
 
 @end

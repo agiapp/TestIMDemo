@@ -23,6 +23,7 @@
 		C5F6CB921F260C2F002B0C97 /* BRAddressBookController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F6CB911F260C2F002B0C97 /* BRAddressBookController.m */; };
 		C5F6CB981F26E252002B0C97 /* UIViewController+Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F6CB971F26E252002B0C97 /* UIViewController+Alert.m */; };
 		C5F6CB9F1F271E55002B0C97 /* BRSettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F6CB9E1F271E55002B0C97 /* BRSettingController.m */; };
+		C5F6CBA61F272CBB002B0C97 /* BRChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F6CBA51F272CBB002B0C97 /* BRChatViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -66,6 +67,8 @@
 		C5F6CB971F26E252002B0C97 /* UIViewController+Alert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Alert.m"; sourceTree = "<group>"; };
 		C5F6CB9D1F271E55002B0C97 /* BRSettingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRSettingController.h; sourceTree = "<group>"; };
 		C5F6CB9E1F271E55002B0C97 /* BRSettingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRSettingController.m; sourceTree = "<group>"; };
+		C5F6CBA41F272CBB002B0C97 /* BRChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRChatViewController.h; sourceTree = "<group>"; };
+		C5F6CBA51F272CBB002B0C97 /* BRChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRChatViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +127,7 @@
 				C5F6C9CF1F209BC1002B0C97 /* Login */,
 				C5F6CB7C1F21F3D5002B0C97 /* Conversation【会话】 */,
 				C5F6CB801F25E5B3002B0C97 /* AddressBook【通讯录】 */,
+				C5F6CBA01F272C4A002B0C97 /* Chat【聊天界面】 */,
 				C5F6CB991F271DF9002B0C97 /* Setting【设置】 */,
 				C5F6C9C31F208F22002B0C97 /* Xib */,
 				C5F6C9C41F208F29002B0C97 /* Other */,
@@ -304,6 +308,39 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		C5F6CBA01F272C4A002B0C97 /* Chat【聊天界面】 */ = {
+			isa = PBXGroup;
+			children = (
+				C5F6CBA31F272C8E002B0C97 /* Model */,
+				C5F6CBA21F272C85002B0C97 /* View */,
+				C5F6CBA11F272C7C002B0C97 /* ViewController */,
+			);
+			name = "Chat【聊天界面】";
+			sourceTree = "<group>";
+		};
+		C5F6CBA11F272C7C002B0C97 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C5F6CBA41F272CBB002B0C97 /* BRChatViewController.h */,
+				C5F6CBA51F272CBB002B0C97 /* BRChatViewController.m */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
+		C5F6CBA21F272C85002B0C97 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		C5F6CBA31F272C8E002B0C97 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -380,6 +417,7 @@
 			files = (
 				C5F6C9B31F208F05002B0C97 /* ViewController.m in Sources */,
 				C5F6CB9F1F271E55002B0C97 /* BRSettingController.m in Sources */,
+				C5F6CBA61F272CBB002B0C97 /* BRChatViewController.m in Sources */,
 				C5F6C9B01F208F05002B0C97 /* AppDelegate.m in Sources */,
 				C5F6CB891F25E6C5002B0C97 /* BRAddFriendViewController.m in Sources */,
 				C5F6CB981F26E252002B0C97 /* UIViewController+Alert.m in Sources */,
