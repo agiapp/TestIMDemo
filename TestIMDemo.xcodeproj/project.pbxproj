@@ -21,6 +21,7 @@
 		C5F6CB7F1F21F427002B0C97 /* BRConversationController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F6CB7E1F21F427002B0C97 /* BRConversationController.m */; };
 		C5F6CB891F25E6C5002B0C97 /* BRAddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F6CB881F25E6C5002B0C97 /* BRAddFriendViewController.m */; };
 		C5F6CB921F260C2F002B0C97 /* BRAddressBookController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F6CB911F260C2F002B0C97 /* BRAddressBookController.m */; };
+		C5F6CB981F26E252002B0C97 /* UIViewController+Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F6CB971F26E252002B0C97 /* UIViewController+Alert.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -60,6 +61,8 @@
 		C5F6CB881F25E6C5002B0C97 /* BRAddFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRAddFriendViewController.m; sourceTree = "<group>"; };
 		C5F6CB901F260C2F002B0C97 /* BRAddressBookController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRAddressBookController.h; sourceTree = "<group>"; };
 		C5F6CB911F260C2F002B0C97 /* BRAddressBookController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRAddressBookController.m; sourceTree = "<group>"; };
+		C5F6CB961F26E252002B0C97 /* UIViewController+Alert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Alert.h"; sourceTree = "<group>"; };
+		C5F6CB971F26E252002B0C97 /* UIViewController+Alert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Alert.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +143,8 @@
 			children = (
 				C5F6C9AE1F208F05002B0C97 /* AppDelegate.h */,
 				C5F6C9AF1F208F05002B0C97 /* AppDelegate.m */,
+				C5F6CB961F26E252002B0C97 /* UIViewController+Alert.h */,
+				C5F6CB971F26E252002B0C97 /* UIViewController+Alert.m */,
 			);
 			name = Other;
 			sourceTree = "<group>";
@@ -339,6 +344,7 @@
 				C5F6C9B31F208F05002B0C97 /* ViewController.m in Sources */,
 				C5F6C9B01F208F05002B0C97 /* AppDelegate.m in Sources */,
 				C5F6CB891F25E6C5002B0C97 /* BRAddFriendViewController.m in Sources */,
+				C5F6CB981F26E252002B0C97 /* UIViewController+Alert.m in Sources */,
 				C5F6C9D51F209C05002B0C97 /* BRLoginViewController.m in Sources */,
 				C5F6CB7F1F21F427002B0C97 /* BRConversationController.m in Sources */,
 				C5F6C9AD1F208F05002B0C97 /* main.m in Sources */,

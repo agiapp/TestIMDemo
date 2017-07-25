@@ -17,8 +17,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveNotification:) name:@"updateContactList" object:nil];
+    
     [self loadData];
 }
+
+// 收到 updateContactList 通知之后执行的事件
+- (void)receiveNotification:(NSNotification *)sender {
+    // 更新好友列表
+    [self loadData];
+}
+
 
 // 获取好友列表的数据
 - (void)loadData {
@@ -39,7 +49,6 @@
 }
 
 #pragma mark - Table view data source
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
@@ -62,6 +71,11 @@
         _contactArr = [NSArray array];
     }
     return _contactArr;
+}
+
+- (void)dealloc {
+    // 移除当前对象监听的事件
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

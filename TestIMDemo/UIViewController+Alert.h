@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface UIViewController (Alert)
+/** 提示弹窗 */
+- (void)showAlertWithTitle:(NSString *)title buttonTitle:(NSArray *)titleArr sureHandler:(void (^)())sureHandler cancelHandler:(void (^)())cancelHandler;
 
 @end

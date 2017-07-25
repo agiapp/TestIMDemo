@@ -16,7 +16,6 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
     // 1.初始化环信SDK
     EMOptions *options = [EMOptions optionsWithAppkey:@"1179170720178073#testimdemo"]; // 注册的AppKey
     //options.apnsCertName = @"push_cer"; // 推送证书名（不需要加后缀）
