@@ -66,6 +66,24 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        NSLog(@"删除好友");
+        // 删除好友请求
+        [[EMClient sharedClient].contactManager deleteContact:self.contactArr[indexPath.row] isDeleteConversation:YES completion:^(NSString *aUsername, EMError *aError) {
+            if (!aError) {
+                NSLog(@"删除好友操作成功！");
+                // 重新从服务器获取好友列表数据
+                [self loadData];
+            }
+        }];
+    }
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return @"删除";
+}
+
 - (NSArray *)contactArr {
     if (!_contactArr) {
         _contactArr = [NSArray array];

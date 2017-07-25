@@ -42,10 +42,12 @@
     // 。。。通知通讯录更新好友列表
     [[NSNotificationCenter defaultCenter] postNotificationName:@"updateContactList" object:nil];
 }
+
 // 对方拒绝我的加好友请求后，会执行这个回调
 - (void)friendRequestDidDeclineByUser:(NSString *)aUsername {
     NSLog(@"%@拒绝了我的添加好友请求", aUsername);
 }
+
 // 接收到好友的添加请求
 - (void)friendRequestDidReceiveFromUser:(NSString *)aUsername message:(NSString *)aMessage {
     NSLog(@"接收到好友的添加请求");
@@ -67,6 +69,13 @@
             }
         }];
     }];
+}
+
+// 监听自己被好友删除
+- (void)friendshipDidRemoveByUser:(NSString *)aUsername {
+    NSLog(@"%@把我删除了", aUsername);
+    // 。。。通知通讯录更新好友列表
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"updateContactList" object:nil];
 }
 
 #pragma mark - Table view data source
