@@ -22,6 +22,7 @@
 		C5F6CB891F25E6C5002B0C97 /* BRAddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F6CB881F25E6C5002B0C97 /* BRAddFriendViewController.m */; };
 		C5F6CB921F260C2F002B0C97 /* BRAddressBookController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F6CB911F260C2F002B0C97 /* BRAddressBookController.m */; };
 		C5F6CB981F26E252002B0C97 /* UIViewController+Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F6CB971F26E252002B0C97 /* UIViewController+Alert.m */; };
+		C5F6CB9F1F271E55002B0C97 /* BRSettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F6CB9E1F271E55002B0C97 /* BRSettingController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -63,6 +64,8 @@
 		C5F6CB911F260C2F002B0C97 /* BRAddressBookController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRAddressBookController.m; sourceTree = "<group>"; };
 		C5F6CB961F26E252002B0C97 /* UIViewController+Alert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Alert.h"; sourceTree = "<group>"; };
 		C5F6CB971F26E252002B0C97 /* UIViewController+Alert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Alert.m"; sourceTree = "<group>"; };
+		C5F6CB9D1F271E55002B0C97 /* BRSettingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRSettingController.h; sourceTree = "<group>"; };
+		C5F6CB9E1F271E55002B0C97 /* BRSettingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRSettingController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +124,7 @@
 				C5F6C9CF1F209BC1002B0C97 /* Login */,
 				C5F6CB7C1F21F3D5002B0C97 /* Conversation【会话】 */,
 				C5F6CB801F25E5B3002B0C97 /* AddressBook【通讯录】 */,
+				C5F6CB991F271DF9002B0C97 /* Setting【设置】 */,
 				C5F6C9C31F208F22002B0C97 /* Xib */,
 				C5F6C9C41F208F29002B0C97 /* Other */,
 				C5F6C9C71F208F86002B0C97 /* Lib */,
@@ -267,6 +271,39 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		C5F6CB991F271DF9002B0C97 /* Setting【设置】 */ = {
+			isa = PBXGroup;
+			children = (
+				C5F6CB9C1F271E2D002B0C97 /* Model */,
+				C5F6CB9B1F271E25002B0C97 /* View */,
+				C5F6CB9A1F271E15002B0C97 /* ViewController */,
+			);
+			name = "Setting【设置】";
+			sourceTree = "<group>";
+		};
+		C5F6CB9A1F271E15002B0C97 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C5F6CB9D1F271E55002B0C97 /* BRSettingController.h */,
+				C5F6CB9E1F271E55002B0C97 /* BRSettingController.m */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
+		C5F6CB9B1F271E25002B0C97 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		C5F6CB9C1F271E2D002B0C97 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -342,6 +379,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5F6C9B31F208F05002B0C97 /* ViewController.m in Sources */,
+				C5F6CB9F1F271E55002B0C97 /* BRSettingController.m in Sources */,
 				C5F6C9B01F208F05002B0C97 /* AppDelegate.m in Sources */,
 				C5F6CB891F25E6C5002B0C97 /* BRAddFriendViewController.m in Sources */,
 				C5F6CB981F26E252002B0C97 /* UIViewController+Alert.m in Sources */,
