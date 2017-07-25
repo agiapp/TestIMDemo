@@ -7,8 +7,9 @@
 //
 
 #import "BRChatViewController.h"
+#import "BRChatCell.h"
 
-@interface BRChatViewController ()
+@interface BRChatViewController ()<UITableViewDataSource, UITableViewDelegate>
 /** 输入toolBar底部的约束 */
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *toolBarBottomLayoutConstraint;
 
@@ -47,6 +48,27 @@
     [UIView animateWithDuration:0.2 animations:^{
         [self.view layoutIfNeeded];
     }];
+}
+
+#pragma mark - UITableViewDataSource, UITableViewDelegate
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 20;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *cellID = @"leftCell";
+    BRChatCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    cell.messageLabel.text = @"sdbjhjasajcjcjcbjadbcjacjacacddas czaixnianxxnainxi";
+    
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 200;
 }
 
 - (void)dealloc {

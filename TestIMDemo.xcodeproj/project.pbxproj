@@ -24,6 +24,7 @@
 		C5F6CB981F26E252002B0C97 /* UIViewController+Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F6CB971F26E252002B0C97 /* UIViewController+Alert.m */; };
 		C5F6CB9F1F271E55002B0C97 /* BRSettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F6CB9E1F271E55002B0C97 /* BRSettingController.m */; };
 		C5F6CBA61F272CBB002B0C97 /* BRChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F6CBA51F272CBB002B0C97 /* BRChatViewController.m */; };
+		C5F6CBA91F273F54002B0C97 /* BRChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F6CBA81F273F54002B0C97 /* BRChatCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -69,6 +70,8 @@
 		C5F6CB9E1F271E55002B0C97 /* BRSettingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRSettingController.m; sourceTree = "<group>"; };
 		C5F6CBA41F272CBB002B0C97 /* BRChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRChatViewController.h; sourceTree = "<group>"; };
 		C5F6CBA51F272CBB002B0C97 /* BRChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRChatViewController.m; sourceTree = "<group>"; };
+		C5F6CBA71F273F54002B0C97 /* BRChatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRChatCell.h; sourceTree = "<group>"; };
+		C5F6CBA81F273F54002B0C97 /* BRChatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRChatCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -330,6 +333,8 @@
 		C5F6CBA21F272C85002B0C97 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C5F6CBA71F273F54002B0C97 /* BRChatCell.h */,
+				C5F6CBA81F273F54002B0C97 /* BRChatCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -424,6 +429,7 @@
 				C5F6C9D51F209C05002B0C97 /* BRLoginViewController.m in Sources */,
 				C5F6CB7F1F21F427002B0C97 /* BRConversationController.m in Sources */,
 				C5F6C9AD1F208F05002B0C97 /* main.m in Sources */,
+				C5F6CBA91F273F54002B0C97 /* BRChatCell.m in Sources */,
 				C5F6CB921F260C2F002B0C97 /* BRAddressBookController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
