@@ -11,4 +11,7 @@
 @interface BRChatCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *messageLabel;
 
+/** 计算cell的高度 */
+- (CGFloat)cellHeight;
+
 @end

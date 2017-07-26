@@ -12,6 +12,10 @@
 @interface BRChatViewController ()<UITableViewDataSource, UITableViewDelegate>
 /** 输入toolBar底部的约束 */
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *toolBarBottomLayoutConstraint;
+// 用这个cell对象来计算cell的高度
+@property (nonatomic, strong) BRChatCell *chatCellTool;
+
+@property (nonatomic, strong) NSArray *dataArr;
 
 @end
 
@@ -24,6 +28,12 @@
     
     // 监听键盘的退出(隐藏)，工具条恢复原位
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHideToAction:) name:UIKeyboardWillHideNotification object:nil];
+    
+    [self loadData];
+}
+
+- (void)loadData {
+    self.dataArr = @[@"监听键盘的弹出显示，更改toolBar底部的约束将工具条往上移，防止被键盘挡住", @"监听键盘的弹出显示，更改toolBar底部的约束将工具条往上移，防止被键盘挡住 监听键盘的弹出显示，更改toolBar底部的约束将工具条往上移，防止被键盘挡住", @"监听键盘的弹出显示", @"你好啊", @"监听键盘的弹出显示，更改toolBar底部的约束将工具条往上移，防止被键盘挡住监听键盘的弹出显示，更改toolBar底部的约束将工具条往上移，防止被键盘挡住,监听键盘的弹出显示，更改toolBar底部的约束将工具条往上移，防止被键盘挡住", @"监听键盘的弹出显示，更改toolBar底部的约束将工具条往上移，防止被键盘挡住"];
 }
 
 #pragma mark - 键盘显示时会触发的方法
@@ -36,7 +46,7 @@
     self.toolBarBottomLayoutConstraint.constant = keyboardHeight;
     // 添加动画：保证键盘的弹出和工具条的上移 同步
     [UIView animateWithDuration:0.2 animations:^{
-        // 立即刷新布局
+        // 刷新布局，重新布局子控件
         [self.view layoutIfNeeded];
     }];
 }
@@ -56,19 +66,40 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 20;
+    return self.dataArr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *cellID = @"leftCell";
+    static NSString *cellID = nil;
+    if (indexPath.row % 2 == 0) {
+        cellID = @"rightCell";
+    } else {
+        cellID = @"leftCell";
+    }
     BRChatCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-    cell.messageLabel.text = @"sdbjhjasajcjcjcbjadbcjacjacacddas czaixnianxxnainxi";
+    cell.messageLabel.text = self.dataArr[indexPath.row];
     
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    // 点击tableView隐藏键盘
+    [self.view endEditing:YES];
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 200;
+    // 随便获取一个cell对象（目的是拿到一个模块装入数据，计算出高度）
+    self.chatCellTool = [tableView dequeueReusableCellWithIdentifier:@"leftCell"];
+    // 给label赋值
+    self.chatCellTool.messageLabel.text = self.dataArr[indexPath.row];
+    return [self.chatCellTool cellHeight];
+}
+
+- (NSArray *)dataArr {
+    if (!_dataArr) {
+        _dataArr = [NSArray array];
+    }
+    return _dataArr;
 }
 
 - (void)dealloc {
