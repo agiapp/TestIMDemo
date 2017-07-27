@@ -9,7 +9,7 @@
 #import "BRChatViewController.h"
 #import "BRChatCell.h"
 
-@interface BRChatViewController ()<UITableViewDataSource, UITableViewDelegate, UITextViewDelegate>
+@interface BRChatViewController ()<UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, EMChatManagerDelegate>
 /** 输入toolBar底部的约束 */
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *toolBarBottomLayoutConstraint;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -26,6 +26,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = self.contactUsername;
+    // 设置聊天管理器的代理（实现代理对应的方法，用来监听消息的回复）
+    [[EMClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
     // 监听键盘的弹出(显示)，更改toolBar底部的约束（将工具条往上移，防止被键盘挡住）
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShowToAction:) name:UIKeyboardWillShowNotification object:nil];
     
@@ -146,10 +148,10 @@
     [self.tableView reloadData];
     //[self loadData];
     // 4.把消息显示在顶部
-    [self scrollToBottom];
+    [self scrollToBottomVisible];
 }
 
-- (void)scrollToBottom {
+- (void)scrollToBottomVisible {
     if (self.messageModelArr.count == 0) {
         return;
     }
@@ -157,6 +159,21 @@
     NSIndexPath *lastIndex = [NSIndexPath indexPathForRow:self.messageModelArr.count - 1 inSection:0];
     // 滚动到底部可见
     [self.tableView scrollToRowAtIndexPath:lastIndex atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+}
+
+#pragma mark - 监听好友回复消息（收到消息的回调）
+- (void)messagesDidReceive:(NSArray *)aMessages {
+    for (EMMessage *message in aMessages) {
+        // from 一定等于当前聊天用户（防止与用户A聊天时，用户B也发来消息，产生干扰。收到用户B的回复消息也会执行这个回调）
+        if ([message.from isEqualToString:self.contactUsername]) {
+            // 把接收的消息添加到数据源
+            [self.messageModelArr addObject:message];
+            // 刷新表格
+            [self.tableView reloadData];
+            // 显示数据到底部
+            [self scrollToBottomVisible];
+        }
+    }
 }
 
 - (NSMutableArray *)messageModelArr {
