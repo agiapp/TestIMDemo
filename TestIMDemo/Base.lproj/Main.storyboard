@@ -302,6 +302,7 @@
                     <connections>
                         <outlet property="tableView" destination="qX0-Y2-Cz9" id="8m3-da-nwK"/>
                         <outlet property="toolBarBottomLayoutConstraint" destination="grH-nj-SDG" id="610-pY-6Lh"/>
+                        <outlet property="toolBarHeightLayoutConstraint" destination="ibd-lR-1Cr" id="HRV-rE-09t"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zJI-Vn-zrx" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -12,6 +12,8 @@
 @interface BRChatViewController ()<UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, EMChatManagerDelegate>
 /** 输入toolBar底部的约束 */
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *toolBarBottomLayoutConstraint;
+/** 输入toolBar高度的约束 */
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *toolBarHeightLayoutConstraint;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 // 用这个cell对象来计算cell的高度
@@ -115,7 +117,21 @@
 
 #pragma mark - UITextViewDelegate
 - (void)textViewDidChange:(UITextView *)textView {
-    // 监听send事件(判断最后一个字符是不是 "\n" 换行字符)
+    // 1.计算textView的高度
+    CGFloat textViewH = 0;
+    CGFloat minH = 34;
+    CGFloat maxH = 68;
+    // UITextView 继承 UIScrollView，所以可以根据contentSize的高度来确定textView的高度
+    CGFloat contentHeight = textView.contentSize.height; // 内容的高度
+    if (contentHeight < minH) {
+        textViewH = minH;
+    } else if (contentHeight > maxH) {
+        textViewH = maxH;
+    } else {
+        textViewH = contentHeight;
+    }
+    
+    // 2.监听send事件(判断最后一个字符是不是 "\n" 换行字符)
     if ([textView.text hasSuffix:@"\n"]) {
         NSLog(@"发送操作");
         // 清除最后的换行字符（换行字符 只占用一个长度）
@@ -124,7 +140,20 @@
         [self sendMessage:textView.text];
         // 发送消息后，清空输入框
         textView.text = nil;
+        // 还原toolBar的高度
+        textViewH = minH;
     }
+    
+    // 3.调整toolBar的高度约束
+    self.toolBarHeightLayoutConstraint.constant = 6 + textViewH + 6;
+    // 修改约束后，一般加个动画顺畅一点
+    [UIView animateWithDuration:0.3 animations:^{
+        [self.view layoutIfNeeded];
+    }];
+    
+    // 纠正光标的位置（让光标回到原位摆正）
+    [textView setContentOffset:CGPointZero animated:YES];
+    [textView scrollRangeToVisible:textView.selectedRange];
 }
 
 #pragma mark - 发送消息
@@ -186,6 +215,7 @@
 - (void)dealloc {
     // 移除通知
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[EMClient sharedClient].chatManager removeDelegate:self];
 }
 
 @end
