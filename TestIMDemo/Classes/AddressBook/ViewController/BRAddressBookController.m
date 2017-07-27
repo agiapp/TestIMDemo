@@ -7,6 +7,7 @@
 //
 
 #import "BRAddressBookController.h"
+#import "BRChatViewController.h"
 
 @interface BRAddressBookController ()
 @property (nonatomic, strong) NSArray *contactArr;
@@ -66,6 +67,10 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+}
+
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         NSLog(@"删除好友");
@@ -82,6 +87,19 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
     return @"删除";
+}
+
+#pragma mark - 连线跳转传值（目的：将好友的用户名传到聊天界面）
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // 获取目标控制器
+    id nextVC = segue.destinationViewController;
+    if ([nextVC isKindOfClass:[BRChatViewController class]]) {
+        // 获取当前点击(选中)的cell
+        NSInteger selectedRow = [self.tableView indexPathForSelectedRow].row;
+        BRChatViewController *chatVC = nextVC;
+        // 给下一个页面传值
+        chatVC.contactUsername = self.contactArr[selectedRow];
+    }
 }
 
 - (NSArray *)contactArr {

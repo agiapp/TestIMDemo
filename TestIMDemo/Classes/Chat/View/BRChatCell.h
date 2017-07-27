@@ -10,6 +10,8 @@
 
 @interface BRChatCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *messageLabel;
+/** 消息模型 */
+@property (nonatomic, strong) EMMessage *messageModel;
 
 /** 计算cell的高度 */
 - (CGFloat)cellHeight;

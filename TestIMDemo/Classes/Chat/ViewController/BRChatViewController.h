@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface BRChatViewController : UIViewController
+/** 好友 用户名 */
+@property (nonatomic, strong) NSString *contactUsername;
 
 @end

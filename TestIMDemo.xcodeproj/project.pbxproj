@@ -166,10 +166,10 @@
 		C5F6CBB51F2881A5002B0C97 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				C5F6CBB61F2881A5002B0C97 /* BRAddFriendViewController.h */,
-				C5F6CBB71F2881A5002B0C97 /* BRAddFriendViewController.m */,
 				C5F6CBB81F2881A5002B0C97 /* BRAddressBookController.h */,
 				C5F6CBB91F2881A5002B0C97 /* BRAddressBookController.m */,
+				C5F6CBB61F2881A5002B0C97 /* BRAddFriendViewController.h */,
+				C5F6CBB71F2881A5002B0C97 /* BRAddFriendViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";

@@ -157,6 +157,9 @@
                                                 <color key="value" red="0.80361479922279788" green="0.80361479922279788" blue="0.80361479922279788" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="delegate" destination="odx-ru-wPb" id="Lwq-l0-7Uf"/>
+                                        </connections>
                                     </textView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zj2-Ug-afZ" userLabel="表情">
                                         <rect key="frame" x="299" y="8" width="30" height="30"/>
@@ -297,6 +300,7 @@
                     <navigationItem key="navigationItem" title="聊天界面" id="79E-ia-ml5"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="tableView" destination="qX0-Y2-Cz9" id="8m3-da-nwK"/>
                         <outlet property="toolBarBottomLayoutConstraint" destination="grH-nj-SDG" id="610-pY-6Lh"/>
                     </connections>
                 </viewController>

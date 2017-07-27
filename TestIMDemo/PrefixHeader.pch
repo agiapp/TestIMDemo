@@ -8,6 +8,9 @@
 
 #ifndef PrefixHeader_pch
 #define PrefixHeader_pch
+
+#define EaseMobAppKey @"1179170720178073#testimdemo"
+
 // 导入环信头文件
 #import <Hyphenate/Hyphenate.h>
 
