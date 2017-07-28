@@ -8,6 +8,8 @@
 
 #import "BRChatViewController.h"
 #import "BRChatCell.h"
+#import "EMCDDeviceManager.h"
+#import "NSDate+BRAdd.h"
 
 @interface BRChatViewController ()<UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, EMChatManagerDelegate>
 /** 输入toolBar底部的约束 */
@@ -15,6 +17,9 @@
 /** 输入toolBar高度的约束 */
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *toolBarHeightLayoutConstraint;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+/** 录音按钮 */
+@property (weak, nonatomic) IBOutlet UIButton *recordBtn;
+
 
 // 用这个cell对象来计算cell的高度
 @property (nonatomic, strong) BRChatCell *chatCellTool;
@@ -137,7 +142,7 @@
         // 清除最后的换行字符（换行字符 只占用一个长度）
         textView.text = [textView.text substringToIndex:textView.text.length - 1];
         // 发送消息
-        [self sendMessage:textView.text];
+        [self sendTextMessage:textView.text];
         // 发送消息后，清空输入框
         textView.text = nil;
         // 还原toolBar的高度
@@ -156,27 +161,53 @@
     [textView scrollRangeToVisible:textView.selectedRange];
 }
 
-#pragma mark - 发送消息
-- (void)sendMessage:(NSString *)text {
-    NSLog(@"contactUsername:%@", self.contactUsername);
-    // 消息 = 消息头 + 消息体
-    // 1.构造消息（构造文字消息）
+#pragma mark - 发送文本消息
+- (void)sendTextMessage:(NSString *)text {
+    // 1.构造一个文字的消息体
     EMTextMessageBody *body = [[EMTextMessageBody alloc] initWithText:text];
-    NSString *username = [[EMClient sharedClient] currentUsername];
-    EMMessage *message = [[EMMessage alloc] initWithConversationID:self.contactUsername from:username to:self.contactUsername body:body ext:nil];
+    // 2.构造消息对象
+    NSString *fromUsername = [[EMClient sharedClient] currentUsername];
+    EMMessage *message = [[EMMessage alloc] initWithConversationID:self.contactUsername from:fromUsername to:self.contactUsername body:body ext:nil];
     // 消息类型：设置为单聊消息（一对一聊天）
     message.chatType = EMChatTypeChat;
-    // 2.发送消息（异步方法）
+    // 3.发送消息（异步方法）
     [[EMClient sharedClient].chatManager sendMessage:message progress:nil completion:^(EMMessage *message, EMError *error) {
         if (!error) {
-            NSLog(@"发送消息成功！");
+            NSLog(@"发送文字消息成功！");
+        } else {
+            NSLog(@"发送文字消息失败：%u, %@", error.code, error.errorDescription);
         }
     }];
-    // 3.把消息添加到数据源，再刷新表格
+    // 4.把消息添加到数据源，再刷新表格
     [self.messageModelArr addObject:message];
     [self.tableView reloadData];
-    //[self loadData];
-    // 4.把消息显示在顶部
+    // 5.把消息显示在顶部
+    [self scrollToBottomVisible];
+}
+
+#pragma mark - 发送语音消息
+- (void)sendVoiceMessage:(NSString *)recordPath duration:(NSInteger)duration {
+    // 1.构造一个语音的消息体 （displayName 会话中列表中，显示的名字）
+    EMVoiceMessageBody *voiceBody = [[EMVoiceMessageBody alloc]initWithLocalPath:recordPath displayName:@"[语音]"];
+    voiceBody.duration = (int)duration;
+    // 2.构造消息对象
+    NSString *fromUsername = [[EMClient sharedClient] currentUsername];
+    EMMessage *message = [[EMMessage alloc] initWithConversationID:self.contactUsername from:fromUsername to:self.contactUsername body:voiceBody ext:nil];
+    // 消息类型：单聊
+    message.chatType = EMChatTypeChat;
+    // 3.发送消息（异步方法）
+    [[EMClient sharedClient].chatManager sendMessage:message progress:nil completion:^(EMMessage *message, EMError *error) {
+        if (!error) {
+            NSLog(@"发送语音消息成功！");
+        } else {
+            // reason：录制的语音文件无效，太小了...
+            NSLog(@"发送语音消息失败：%u, %@", error.code, error.errorDescription);
+        }
+    }];
+    // 4.把消息添加到数据源，再刷新表格
+    [self.messageModelArr addObject:message];
+    [self.tableView reloadData];
+    // 5.把消息显示在顶部
     [self scrollToBottomVisible];
 }
 
@@ -203,6 +234,46 @@
             [self scrollToBottomVisible];
         }
     }
+}
+
+#pragma mark - 声音按钮事件
+- (IBAction)clickVoiceBtn:(id)sender {
+    [self.view endEditing:YES];
+    // 显示录音按钮
+    self.recordBtn.hidden = !self.recordBtn.hidden;
+}
+
+#pragma mark - 按钮点下去开始录音
+- (IBAction)recordBtnWhenTouchDown:(id)sender {
+    NSLog(@"开始录音");
+    [[EMCDDeviceManager sharedInstance] asyncStartRecordingWithFileName:[NSDate currentTimestamp] completion:^(NSError *error) {
+        if (!error) {
+            NSLog(@"开始录音成功！");
+        } else {
+            NSLog(@"录音失败：%@", error);
+        }
+    }];
+}
+
+#pragma mark - 手指从按钮范围外松开取消录音
+- (IBAction)recordBtnWhenTouchUpOutside:(id)sender {
+    NSLog(@"取消录音");
+    [[EMCDDeviceManager sharedInstance] cancelCurrentRecording];
+}
+
+#pragma mark - 手指从按钮范围内松开结束录音（发送语音到服务器）
+- (IBAction)recordBtnWhenTouchUpInside:(id)sender {
+    NSLog(@"结束录音");
+    [[EMCDDeviceManager sharedInstance] asyncStopRecordingWithCompletion:^(NSString *recordPath, NSInteger aDuration, NSError *error) {
+        if (!error) {
+            NSLog(@"录音成功！");
+            NSLog(@"录音路径：%@， 录音时长：%ld", recordPath, aDuration);
+            // 发送语音到服务器
+            [self sendVoiceMessage:recordPath duration:aDuration];
+        } else {
+            NSLog(@"录音失败：%@", error);
+        }
+    }];
 }
 
 - (NSMutableArray *)messageModelArr {

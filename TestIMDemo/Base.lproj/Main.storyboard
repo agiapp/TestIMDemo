@@ -124,13 +124,16 @@
                                             <constraint firstAttribute="height" constant="0.5" id="BSN-oJ-Pvy"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xsf-f1-meF" userLabel="录音">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xsf-f1-meF" userLabel="声音">
                                         <rect key="frame" x="8" y="8" width="30" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="7nr-Je-Ro0"/>
                                             <constraint firstAttribute="width" constant="30" id="WJ3-as-hS5"/>
                                         </constraints>
                                         <state key="normal" image="chatBar_record"/>
+                                        <connections>
+                                            <action selector="clickVoiceBtn:" destination="odx-ru-wPb" eventType="touchUpInside" id="0ad-Nv-nTv"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bt7-nX-8sO" userLabel="更多">
                                         <rect key="frame" x="337" y="8" width="30" height="30"/>
@@ -169,9 +172,38 @@
                                         </constraints>
                                         <state key="normal" image="chatBar_face"/>
                                     </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Lg-Ql-Mr1">
+                                        <rect key="frame" x="43" y="6" width="251" height="34"/>
+                                        <color key="backgroundColor" red="0.92064837460000004" green="0.91939315560000001" blue="0.94131870360000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="按住 说话">
+                                            <color key="titleColor" red="0.27647344559585496" green="0.27647344559585496" blue="0.27647344559585496" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <state key="highlighted" title="松开 结束">
+                                            <color key="titleColor" red="0.27647344559999998" green="0.27647344559999998" blue="0.27647344559999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="4"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                <real key="value" value="0.59999999999999998"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColorFromUIColor">
+                                                <color key="value" red="0.80361479920000001" green="0.80361479920000001" blue="0.80361479920000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="recordBtnWhenTouchDown:" destination="odx-ru-wPb" eventType="touchDown" id="V7H-mP-ldT"/>
+                                            <action selector="recordBtnWhenTouchUpInside:" destination="odx-ru-wPb" eventType="touchUpInside" id="uLc-H2-hun"/>
+                                            <action selector="recordBtnWhenTouchUpOutside:" destination="odx-ru-wPb" eventType="touchUpOutside" id="hTa-ts-RcZ"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.92064837455261439" green="0.91939315562993484" blue="0.94131870364922277" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstItem="8Lg-Ql-Mr1" firstAttribute="leading" secondItem="xsf-f1-meF" secondAttribute="trailing" constant="5" id="8a1-f3-rM7"/>
                                     <constraint firstAttribute="trailing" secondItem="zj2-Ug-afZ" secondAttribute="trailing" constant="46" id="B3d-Lo-UtA"/>
                                     <constraint firstAttribute="bottom" secondItem="xsf-f1-meF" secondAttribute="bottom" constant="8" id="F4c-qN-nGY"/>
                                     <constraint firstAttribute="trailing" secondItem="bt7-nX-8sO" secondAttribute="trailing" constant="8" id="IAc-kG-Q5u"/>
@@ -184,7 +216,10 @@
                                     <constraint firstAttribute="bottom" secondItem="bt7-nX-8sO" secondAttribute="bottom" constant="8" id="hkh-t5-Zm8"/>
                                     <constraint firstItem="uoh-YM-3bH" firstAttribute="top" secondItem="1Gv-7k-4r7" secondAttribute="top" id="iSH-L2-AbA"/>
                                     <constraint firstAttribute="height" constant="46" id="ibd-lR-1Cr"/>
+                                    <constraint firstItem="8Lg-Ql-Mr1" firstAttribute="top" secondItem="1Gv-7k-4r7" secondAttribute="top" constant="6" id="oBI-OD-BJu"/>
+                                    <constraint firstItem="zj2-Ug-afZ" firstAttribute="leading" secondItem="8Lg-Ql-Mr1" secondAttribute="trailing" constant="5" id="qvc-QD-bDM"/>
                                     <constraint firstItem="xsf-f1-meF" firstAttribute="leading" secondItem="1Gv-7k-4r7" secondAttribute="leading" constant="8" id="tNx-rf-Ms5"/>
+                                    <constraint firstAttribute="bottom" secondItem="8Lg-Ql-Mr1" secondAttribute="bottom" constant="6" id="yf0-Kp-SEe"/>
                                     <constraint firstItem="WTe-vM-wqe" firstAttribute="leading" secondItem="xsf-f1-meF" secondAttribute="trailing" constant="5" id="yik-9N-a8G"/>
                                 </constraints>
                             </view>
@@ -300,6 +335,7 @@
                     <navigationItem key="navigationItem" title="聊天界面" id="79E-ia-ml5"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="recordBtn" destination="8Lg-Ql-Mr1" id="c3c-QE-Aqh"/>
                         <outlet property="tableView" destination="qX0-Y2-Cz9" id="8m3-da-nwK"/>
                         <outlet property="toolBarBottomLayoutConstraint" destination="grH-nj-SDG" id="610-pY-6Lh"/>
                         <outlet property="toolBarHeightLayoutConstraint" destination="ibd-lR-1Cr" id="HRV-rE-09t"/>
