@@ -131,6 +131,7 @@
                                             <constraint firstAttribute="width" constant="30" id="WJ3-as-hS5"/>
                                         </constraints>
                                         <state key="normal" image="chatBar_record"/>
+                                        <state key="selected" image="chatBar_keyboard"/>
                                         <connections>
                                             <action selector="clickVoiceBtn:" destination="odx-ru-wPb" eventType="touchUpInside" id="0ad-Nv-nTv"/>
                                         </connections>
@@ -335,6 +336,7 @@
                     <navigationItem key="navigationItem" title="聊天界面" id="79E-ia-ml5"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="inputTextView" destination="WTe-vM-wqe" id="Gli-cH-fuA"/>
                         <outlet property="recordBtn" destination="8Lg-Ql-Mr1" id="c3c-QE-Aqh"/>
                         <outlet property="tableView" destination="qX0-Y2-Cz9" id="8m3-da-nwK"/>
                         <outlet property="toolBarBottomLayoutConstraint" destination="grH-nj-SDG" id="610-pY-6Lh"/>
@@ -502,6 +504,7 @@
     </scenes>
     <resources>
         <image name="chatBar_face" width="30" height="30"/>
+        <image name="chatBar_keyboard" width="30" height="30"/>
         <image name="chatBar_more" width="30" height="30"/>
         <image name="chatBar_record" width="30" height="30"/>
         <image name="chatListCellHead" width="50" height="50"/>

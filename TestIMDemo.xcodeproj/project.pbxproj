@@ -41,6 +41,7 @@
 		C5F6CCAE1F2AE645002B0C97 /* in.caf in Resources */ = {isa = PBXBuildFile; fileRef = C5F6CC6A1F2AE644002B0C97 /* in.caf */; };
 		C5F6CCB11F2B0A99002B0C97 /* NSDate+BRAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F6CCB01F2B0A99002B0C97 /* NSDate+BRAdd.m */; };
 		C5F6CCC11F2B4179002B0C97 /* BRVoicePlayTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F6CCC01F2B4179002B0C97 /* BRVoicePlayTool.m */; };
+		C5F6CCC41F2F080E002B0C97 /* BRAttributedText.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F6CCC31F2F080E002B0C97 /* BRAttributedText.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -125,6 +126,8 @@
 		C5F6CCB01F2B0A99002B0C97 /* NSDate+BRAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+BRAdd.m"; sourceTree = "<group>"; };
 		C5F6CCBF1F2B4179002B0C97 /* BRVoicePlayTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRVoicePlayTool.h; sourceTree = "<group>"; };
 		C5F6CCC01F2B4179002B0C97 /* BRVoicePlayTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRVoicePlayTool.m; sourceTree = "<group>"; };
+		C5F6CCC21F2F080E002B0C97 /* BRAttributedText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRAttributedText.h; sourceTree = "<group>"; };
+		C5F6CCC31F2F080E002B0C97 /* BRAttributedText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRAttributedText.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -244,6 +247,8 @@
 		C5F6CBBB1F2881A5002B0C97 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C5F6CCC21F2F080E002B0C97 /* BRAttributedText.h */,
+				C5F6CCC31F2F080E002B0C97 /* BRAttributedText.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -621,6 +626,7 @@
 				C5F6CBE51F2881A5002B0C97 /* BRConversationController.m in Sources */,
 				C5F6CC1F1F2ADEBA002B0C97 /* EMCDDeviceManagerBase.m in Sources */,
 				C5F6CBE11F2881A5002B0C97 /* BRAddFriendViewController.m in Sources */,
+				C5F6CCC41F2F080E002B0C97 /* BRAttributedText.m in Sources */,
 				C5F6CBE41F2881A5002B0C97 /* BRChatViewController.m in Sources */,
 				C5F6CC1B1F2ADEBA002B0C97 /* EMCDDeviceManager+Media.m in Sources */,
 				C5F6CCC11F2B4179002B0C97 /* BRVoicePlayTool.m in Sources */,

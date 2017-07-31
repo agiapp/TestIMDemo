@@ -17,6 +17,9 @@
 /** 输入toolBar高度的约束 */
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *toolBarHeightLayoutConstraint;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+/** textView 输入框 */
+@property (weak, nonatomic) IBOutlet UITextView *inputTextView;
+
 /** 录音按钮 */
 @property (weak, nonatomic) IBOutlet UIButton *recordBtn;
 
@@ -237,10 +240,21 @@
 }
 
 #pragma mark - 声音按钮事件
-- (IBAction)clickVoiceBtn:(id)sender {
-    [self.view endEditing:YES];
+- (IBAction)clickVoiceBtn:(UIButton *)sender {
+    sender.selected = !sender.isSelected;
     // 显示录音按钮
     self.recordBtn.hidden = !self.recordBtn.hidden;
+    if (self.recordBtn.hidden == NO) {
+        // 让保证 bottomToolBar 的高度回到默认的高度
+        self.toolBarHeightLayoutConstraint.constant = 46;
+        // 隐藏键盘
+        [self.view endEditing:YES];
+    } else {
+        // 显示键盘
+        [self.inputTextView becomeFirstResponder];
+        // 恢复 bottomToolBar 的高度（自适应文字的高度）
+        [self textViewDidChange:self.inputTextView];
+    }
 }
 
 #pragma mark - 按钮点下去开始录音

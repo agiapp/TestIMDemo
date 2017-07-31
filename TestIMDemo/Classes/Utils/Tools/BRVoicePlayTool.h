@@ -10,6 +10,6 @@
 
 @interface BRVoicePlayTool : NSObject
 /** 播放语音 */
-+ (void)playWithMessage:(EMMessage *)message;
++ (void)playWithMessage:(EMMessage *)message msgLabel:(UILabel *)msgLabel;
 
 @end
