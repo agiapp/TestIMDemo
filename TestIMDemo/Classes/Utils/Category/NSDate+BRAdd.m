@@ -38,4 +38,33 @@
     return currentDateStr;
 }
 
+#pragma mark - 获取聊天消息时间
++ (NSString *)chatTime:(long long)timestamp {
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    // 1.获取当前时间的年、月、日
+    NSDate *currentData = [NSDate date];
+    NSDateComponents *currentComponents = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:currentData];
+    NSInteger currentYear = currentComponents.year;
+    NSInteger currentMonth = currentComponents.month;
+    NSInteger currentDay = currentComponents.day;
+    
+    // 2.获取消息发送时间的年、月、日
+    NSDate *msgData = [NSDate dateWithTimeIntervalSince1970:timestamp / 1000.0];
+    NSDateComponents *msgComponents = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:msgData];
+    NSInteger msgYear = msgComponents.year;
+    NSInteger msgMonth = msgComponents.month;
+    NSInteger msgDay = msgComponents.day;
+    // 格式化
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    if (currentYear == msgYear && currentMonth == msgMonth && currentDay == msgDay) { //今天
+        formatter.dateFormat = @"  HH:mm  ";
+    } else if (currentYear == msgYear && currentMonth == msgMonth && (currentDay - 1) == msgDay) { //昨天
+        formatter.dateFormat = @"  昨天 HH:mm  ";
+    } else { //昨天以前
+        formatter.dateFormat = @"  yyyy年M月dd日 HH:mm  ";
+    }
+    
+    return [formatter stringFromDate:msgData];
+}
+
 @end

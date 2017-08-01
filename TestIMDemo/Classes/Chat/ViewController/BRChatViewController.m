@@ -14,6 +14,9 @@
 #import "BRVoicePlayTool.h"
 
 @interface BRChatViewController ()<UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, EMChatManagerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+{
+    NSString *_lastTimeStr;
+}
 /** 输入toolBar底部的约束 */
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *toolBarBottomLayoutConstraint;
 /** 输入toolBar高度的约束 */
@@ -56,10 +59,28 @@
     [conversation loadMessagesStartFromId:nil count:10 searchDirection:EMMessageSearchDirectionUp completion:^(NSArray *aMessages, EMError *aError) {
         if (!aError) {
             NSLog(@"获取到的消息 aMessages：%@", aMessages);
-            [self.messageModelArr addObjectsFromArray:aMessages];
-            [self.tableView reloadData];
+            for (EMMessage *message in aMessages) {
+                // 添加消息到数据源（一个一个的添加，便于判断是否添加时间）
+                [self addDataSourcesWithMessageModel:message];
+            }
         }
     }];
+}
+
+#pragma mark - 添加消息到数据源
+- (void)addDataSourcesWithMessageModel:(EMMessage *)msgModel {
+    // 判断当前消息前是否要添加时间
+    NSString *chatTimeStr = [NSDate chatTime:msgModel.timestamp];
+    // 过滤时间：同一分钟内的消息，只显示一个时间（由于没有显示秒数，是为了保证显示的时间不重复）
+    if (![chatTimeStr isEqualToString:_lastTimeStr]) {
+        // 1.添加时间字符串到数据源
+        [self.messageModelArr addObject:chatTimeStr];
+        _lastTimeStr = chatTimeStr;
+    }
+    // 2.添加消息模型到数据源
+    [self.messageModelArr addObject:msgModel];
+    // 刷新UI
+    [self.tableView reloadData];
 }
 
 #pragma mark - 键盘显示时会触发的方法
@@ -125,7 +146,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     // 判断数据源的类型
     if ([self.messageModelArr[indexPath.row] isKindOfClass:[NSString class]]) { // 显示时间的cell
-        return 20;
+        return 50;
     }
     
     // 随便获取一个cell对象（目的是拿到一个模块装入数据，计算出高度）
@@ -194,8 +215,8 @@
         }
     }];
     // 3.把消息添加到数据源，再刷新表格
-    [self.messageModelArr addObject:message];
-    [self.tableView reloadData];
+    // 添加消息到数据源（一个一个的添加，便于判断是否添加时间）
+    [self addDataSourcesWithMessageModel:message];
     // 4.把消息显示在顶部
     [self scrollToBottomVisible];
 }
@@ -239,9 +260,7 @@
         // from 一定等于当前聊天用户（防止与用户A聊天时，用户B也发来消息，产生干扰。收到用户B的回复消息也会执行这个回调）
         if ([message.from isEqualToString:self.contactUsername]) {
             // 把接收的消息添加到数据源
-            [self.messageModelArr addObject:message];
-            // 刷新表格
-            [self.tableView reloadData];
+            [self addDataSourcesWithMessageModel:message];
             // 显示数据到底部
             [self scrollToBottomVisible];
         }

@@ -24,4 +24,13 @@
  */
 + (NSString *)currentDateStringWithFormat:(NSString *)formatterStr;
 
+/** 
+ *  获取聊天消息的时间
+ *  时间格式如下：
+ *      今天：【HH:mm】
+ *      昨天：【昨天 HH:mm】
+ *      昨天之前：【yyyy-MM-dd HH:mm】
+ */
++ (NSString *)chatTime:(long long)timestamp;
+
 @end

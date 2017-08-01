@@ -319,26 +319,36 @@
                                             <outlet property="messageLabel" destination="CF8-GJ-Nx9" id="dTg-Rv-w9V"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="timeCell" rowHeight="32" id="5fK-5v-qW0" customClass="BRTimeCell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="timeCell" rowHeight="32" id="5fK-5v-qW0" customClass="BRTimeCell">
                                         <rect key="frame" x="0.0" y="214" width="375" height="32"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5fK-5v-qW0" id="taN-TF-cbX">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="32"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VqV-oJ-mIj">
-                                                    <rect key="frame" x="172.5" y="9" width="31" height="14.5"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VqV-oJ-mIj">
+                                                    <rect key="frame" x="172.5" y="2" width="31" height="20"/>
+                                                    <color key="backgroundColor" red="0.81818902091041124" green="0.81818902091041124" blue="0.81818902091041124" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="eRo-Zn-TlB"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="3"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                             </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
-                                                <constraint firstItem="VqV-oJ-mIj" firstAttribute="centerY" secondItem="taN-TF-cbX" secondAttribute="centerY" id="hj2-2X-T7z"/>
+                                                <constraint firstAttribute="bottom" secondItem="VqV-oJ-mIj" secondAttribute="bottom" constant="10" id="AQS-kj-Xu2"/>
                                                 <constraint firstItem="VqV-oJ-mIj" firstAttribute="centerX" secondItem="taN-TF-cbX" secondAttribute="centerX" id="zS8-EC-7b5"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.37610371479999999" green="0.79966806989999994" blue="0.64128550959999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="timeLabel" destination="VqV-oJ-mIj" id="CBz-oK-nzQ"/>
                                         </connections>

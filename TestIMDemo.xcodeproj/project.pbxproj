@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C5ACE4151F30554B0069978B /* FLAnimatedImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = C5ACE3ED1F30554B0069978B /* FLAnimatedImageView+WebCache.m */; };
 		C5ACE4161F30554B0069978B /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = C5ACE3EF1F30554B0069978B /* MKAnnotationView+WebCache.m */; };
 		C5ACE4171F30554B0069978B /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = C5ACE3F11F30554B0069978B /* NSData+ImageContentType.m */; };
 		C5ACE4181F30554B0069978B /* NSImage+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = C5ACE3F31F30554B0069978B /* NSImage+WebCache.m */; };
@@ -81,8 +80,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		C5ACE3EC1F30554B0069978B /* FLAnimatedImageView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FLAnimatedImageView+WebCache.h"; sourceTree = "<group>"; };
-		C5ACE3ED1F30554B0069978B /* FLAnimatedImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FLAnimatedImageView+WebCache.m"; sourceTree = "<group>"; };
 		C5ACE3EE1F30554B0069978B /* MKAnnotationView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKAnnotationView+WebCache.h"; sourceTree = "<group>"; };
 		C5ACE3EF1F30554B0069978B /* MKAnnotationView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKAnnotationView+WebCache.m"; sourceTree = "<group>"; };
 		C5ACE3F01F30554B0069978B /* NSData+ImageContentType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+ImageContentType.h"; sourceTree = "<group>"; };
@@ -213,7 +210,6 @@
 		C5ACE3EA1F30554B0069978B /* SDWebImage */ = {
 			isa = PBXGroup;
 			children = (
-				C5ACE3EB1F30554B0069978B /* FLAnimatedImage */,
 				C5ACE3EE1F30554B0069978B /* MKAnnotationView+WebCache.h */,
 				C5ACE3EF1F30554B0069978B /* MKAnnotationView+WebCache.m */,
 				C5ACE3F01F30554B0069978B /* NSData+ImageContentType.h */,
@@ -255,15 +251,6 @@
 				C5ACE4141F30554B0069978B /* UIView+WebCacheOperation.m */,
 			);
 			path = SDWebImage;
-			sourceTree = "<group>";
-		};
-		C5ACE3EB1F30554B0069978B /* FLAnimatedImage */ = {
-			isa = PBXGroup;
-			children = (
-				C5ACE3EC1F30554B0069978B /* FLAnimatedImageView+WebCache.h */,
-				C5ACE3ED1F30554B0069978B /* FLAnimatedImageView+WebCache.m */,
-			);
-			path = FLAnimatedImage;
 			sourceTree = "<group>";
 		};
 		C5F6C99F1F208F05002B0C97 = {
@@ -773,7 +760,6 @@
 				C5F6CC1D1F2ADEBA002B0C97 /* EMCDDeviceManager+ProximitySensor.m in Sources */,
 				C5F6CBE61F2881A5002B0C97 /* BRLoginViewController.m in Sources */,
 				C5ACE4181F30554B0069978B /* NSImage+WebCache.m in Sources */,
-				C5ACE4151F30554B0069978B /* FLAnimatedImageView+WebCache.m in Sources */,
 				C5ACE4261F30554B0069978B /* UIImageView+WebCache.m in Sources */,
 				C5ACE41D1F30554B0069978B /* SDWebImageDownloader.m in Sources */,
 				C5ACE41A1F30554B0069978B /* SDImageCacheConfig.m in Sources */,
