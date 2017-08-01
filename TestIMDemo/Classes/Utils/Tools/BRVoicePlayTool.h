@@ -12,4 +12,7 @@
 /** 播放语音 */
 + (void)playWithMessage:(EMMessage *)message msgLabel:(UILabel *)msgLabel;
 
+/** 停止播放语音 */
++ (void)stopPlaying;
+
 @end

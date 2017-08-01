@@ -11,6 +11,11 @@
 #import "BRAttributedText.h"
 #import "UIImageView+WebCache.h"
 
+@interface BRChatCell ()
+@property (nonatomic, strong) UIImageView *chatImageView;
+
+@end
+
 @implementation BRChatCell
 
 #pragma mark - 在此方法中做一些初始化操作
@@ -32,6 +37,10 @@
 
 - (void)setMessageModel:(EMMessage *)messageModel {
     _messageModel = messageModel;
+    
+    // 重用时，把聊天图片控件移除
+    [self.chatImageView removeFromSuperview];
+    
     // 解析普通消息
     EMMessageBody *msgBody = messageModel.body;
     switch (msgBody.type) {
@@ -94,10 +103,8 @@
     self.messageLabel.attributedText = attributedString;
     
     // 1. 在cell的Label上添加UIImageView
-    UIImageView *imageView = [[UIImageView alloc]init];
-    imageView.frame = thumbFrame;
-    imageView.backgroundColor = [UIColor redColor];
-    [self.messageLabel addSubview:imageView];
+    [self.messageLabel addSubview:self.chatImageView];
+    self.chatImageView.frame = thumbFrame;
     
     // 下载图片
     NSLog(@"缩略图remote路径：%@", imageMsgBody.thumbnailRemotePath);
@@ -106,9 +113,9 @@
     NSFileManager *manager = [NSFileManager defaultManager];
     // 如果本地图片存在，直接从本地显示图片
     if ([manager fileExistsAtPath:imageMsgBody.thumbnailLocalPath]) {
-        [imageView sd_setImageWithURL:[NSURL fileURLWithPath:imageMsgBody.thumbnailLocalPath] placeholderImage:[UIImage imageNamed:@"default.png"]];
+        [self.chatImageView sd_setImageWithURL:[NSURL fileURLWithPath:imageMsgBody.thumbnailLocalPath] placeholderImage:[UIImage imageNamed:@"default.png"]];
     } else {
-        [imageView sd_setImageWithURL:[NSURL URLWithString:imageMsgBody.thumbnailRemotePath] placeholderImage:[UIImage imageNamed:@"default.png"]];
+        [self.chatImageView sd_setImageWithURL:[NSURL URLWithString:imageMsgBody.thumbnailRemotePath] placeholderImage:[UIImage imageNamed:@"default.png"]];
     }
 }
 
@@ -116,6 +123,14 @@
     // 刷新布局，重新布局子控件
     [self layoutIfNeeded];
     return 15 + self.messageLabel.bounds.size.height + 15;
+}
+
+- (UIImageView *)chatImageView {
+    if (!_chatImageView) {
+        _chatImageView = [[UIImageView alloc]init];
+        _chatImageView.backgroundColor = [UIColor redColor];
+    }
+    return _chatImageView;
 }
 
 @end

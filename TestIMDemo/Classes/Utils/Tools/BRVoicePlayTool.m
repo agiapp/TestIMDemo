@@ -72,5 +72,14 @@ static UIImageView *animatingImageView;
     
 }
 
+#pragma mark - 停止播放语音
++ (void)stopPlaying {
+    // 停止播放语音
+    [[EMCDDeviceManager sharedInstance] stopPlaying];
+    // 移除ImageView动画
+    [animatingImageView stopAnimating];
+    [animatingImageView removeFromSuperview];
+}
+
 
 @end

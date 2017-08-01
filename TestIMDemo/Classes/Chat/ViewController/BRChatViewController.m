@@ -8,8 +8,10 @@
 
 #import "BRChatViewController.h"
 #import "BRChatCell.h"
+#import "BRTimeCell.h"
 #import "EMCDDeviceManager.h"
 #import "NSDate+BRAdd.h"
+#import "BRVoicePlayTool.h"
 
 @interface BRChatViewController ()<UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, EMChatManagerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 /** 输入toolBar底部的约束 */
@@ -94,8 +96,16 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    EMMessage *messageModel = self.messageModelArr[indexPath.row];
+    // 判断数据源的类型
+    if ([self.messageModelArr[indexPath.row] isKindOfClass:[NSString class]]) { // 显示时间的cell
+        // 时间cell
+        BRTimeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"timeCell"];
+        cell.timeLabel.text = self.messageModelArr[indexPath.row];
+        return cell;
+    }
     
+    // 消息cell
+    EMMessage *messageModel = self.messageModelArr[indexPath.row];
     static NSString *cellID = nil;
     if ([messageModel.from isEqualToString:self.contactUsername]) { //接收方（好友） 显示在左边
         cellID = @"leftCell";
@@ -103,9 +113,7 @@
         cellID = @"rightCell";
     }
     BRChatCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-    
     cell.messageModel = messageModel;
-    
     return cell;
 }
 
@@ -115,6 +123,11 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    // 判断数据源的类型
+    if ([self.messageModelArr[indexPath.row] isKindOfClass:[NSString class]]) { // 显示时间的cell
+        return 20;
+    }
+    
     // 随便获取一个cell对象（目的是拿到一个模块装入数据，计算出高度）
     self.chatCellTool = [tableView dequeueReusableCellWithIdentifier:@"leftCell"];
     // 给模型赋值
@@ -240,6 +253,8 @@
     sender.selected = !sender.isSelected;
     // 显示录音按钮
     self.recordBtn.hidden = !self.recordBtn.hidden;
+    self.inputTextView.hidden = !self.inputTextView.hidden;
+    
     if (self.recordBtn.hidden == NO) {
         // 让保证 bottomToolBar 的高度回到默认的高度
         self.toolBarHeightLayoutConstraint.constant = 46;
@@ -286,13 +301,6 @@
     }];
 }
 
-- (NSMutableArray *)messageModelArr {
-    if (!_messageModelArr) {
-        _messageModelArr = [[NSMutableArray alloc]init];
-    }
-    return _messageModelArr;
-}
-
 #pragma mark - 更多按钮事件
 - (IBAction)clickMoreBtn:(UIButton *)sender {
     NSLog(@"更多");
@@ -314,6 +322,19 @@
     [self sendImageMessage:image];
     // 隐藏当前图片选择控制器
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - 开始拖拽
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    // 通知语音的播放
+    [BRVoicePlayTool stopPlaying];
+}
+
+- (NSMutableArray *)messageModelArr {
+    if (!_messageModelArr) {
+        _messageModelArr = [[NSMutableArray alloc]init];
+    }
+    return _messageModelArr;
 }
 
 - (void)dealloc {

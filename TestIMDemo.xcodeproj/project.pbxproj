@@ -28,6 +28,7 @@
 		C5ACE4271F30554B0069978B /* UIView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = C5ACE4121F30554B0069978B /* UIView+WebCache.m */; };
 		C5ACE4281F30554B0069978B /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = C5ACE4141F30554B0069978B /* UIView+WebCacheOperation.m */; };
 		C5ACE42A1F3057A60069978B /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = C5ACE4291F3057A60069978B /* default.png */; };
+		C5ACE42D1F3063730069978B /* BRTimeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C5ACE42C1F3063730069978B /* BRTimeCell.m */; };
 		C5F6C9AD1F208F05002B0C97 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F6C9AC1F208F05002B0C97 /* main.m */; };
 		C5F6C9B01F208F05002B0C97 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F6C9AF1F208F05002B0C97 /* AppDelegate.m */; };
 		C5F6C9B61F208F05002B0C97 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5F6C9B41F208F05002B0C97 /* Main.storyboard */; };
@@ -122,6 +123,8 @@
 		C5ACE4131F30554B0069978B /* UIView+WebCacheOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WebCacheOperation.h"; sourceTree = "<group>"; };
 		C5ACE4141F30554B0069978B /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
 		C5ACE4291F3057A60069978B /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default.png; sourceTree = "<group>"; };
+		C5ACE42B1F3063730069978B /* BRTimeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRTimeCell.h; sourceTree = "<group>"; };
+		C5ACE42C1F3063730069978B /* BRTimeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRTimeCell.m; sourceTree = "<group>"; };
 		C5F6C9A81F208F05002B0C97 /* TestIMDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestIMDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5F6C9AC1F208F05002B0C97 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C5F6C9AE1F208F05002B0C97 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../../AppDelegate.h; sourceTree = "<group>"; };
@@ -377,6 +380,8 @@
 			children = (
 				C5F6CBBD1F2881A5002B0C97 /* BRChatCell.h */,
 				C5F6CBBE1F2881A5002B0C97 /* BRChatCell.m */,
+				C5ACE42B1F3063730069978B /* BRTimeCell.h */,
+				C5ACE42C1F3063730069978B /* BRTimeCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -761,6 +766,7 @@
 				C5F6CC1B1F2ADEBA002B0C97 /* EMCDDeviceManager+Media.m in Sources */,
 				C5F6CCC11F2B4179002B0C97 /* BRVoicePlayTool.m in Sources */,
 				C5ACE4271F30554B0069978B /* UIView+WebCache.m in Sources */,
+				C5ACE42D1F3063730069978B /* BRTimeCell.m in Sources */,
 				C5F6C9AD1F208F05002B0C97 /* main.m in Sources */,
 				C5ACE41F1F30554B0069978B /* SDWebImageManager.m in Sources */,
 				C5ACE4241F30554B0069978B /* UIImage+WebP.m in Sources */,
