@@ -9,6 +9,7 @@
 #import "BRChatCell.h"
 #import "BRVoicePlayTool.h"
 #import "BRAttributedText.h"
+#import "UIImageView+WebCache.h"
 
 @implementation BRChatCell
 
@@ -101,6 +102,14 @@
     // 下载图片
     NSLog(@"缩略图remote路径：%@", imageMsgBody.thumbnailRemotePath);
     NSLog(@"缩略图local路径：%@", imageMsgBody.thumbnailLocalPath);
+    
+    NSFileManager *manager = [NSFileManager defaultManager];
+    // 如果本地图片存在，直接从本地显示图片
+    if ([manager fileExistsAtPath:imageMsgBody.thumbnailLocalPath]) {
+        [imageView sd_setImageWithURL:[NSURL fileURLWithPath:imageMsgBody.thumbnailLocalPath] placeholderImage:[UIImage imageNamed:@"default.png"]];
+    } else {
+        [imageView sd_setImageWithURL:[NSURL URLWithString:imageMsgBody.thumbnailRemotePath] placeholderImage:[UIImage imageNamed:@"default.png"]];
+    }
 }
 
 - (CGFloat)cellHeight {
