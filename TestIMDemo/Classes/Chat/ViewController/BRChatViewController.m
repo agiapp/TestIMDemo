@@ -11,7 +11,7 @@
 #import "EMCDDeviceManager.h"
 #import "NSDate+BRAdd.h"
 
-@interface BRChatViewController ()<UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, EMChatManagerDelegate>
+@interface BRChatViewController ()<UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, EMChatManagerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 /** 输入toolBar底部的约束 */
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *toolBarBottomLayoutConstraint;
 /** 输入toolBar高度的约束 */
@@ -164,54 +164,50 @@
     [textView scrollRangeToVisible:textView.selectedRange];
 }
 
-#pragma mark - 发送文本消息
-- (void)sendTextMessage:(NSString *)text {
-    // 1.构造一个文字的消息体
-    EMTextMessageBody *body = [[EMTextMessageBody alloc] initWithText:text];
-    // 2.构造消息对象
+#pragma mark - 发送消息
+- (void)sendMessage:(EMMessageBody *)messageBody {
+    // 1.构造消息对象
     NSString *fromUsername = [[EMClient sharedClient] currentUsername];
-    EMMessage *message = [[EMMessage alloc] initWithConversationID:self.contactUsername from:fromUsername to:self.contactUsername body:body ext:nil];
+    EMMessage *message = [[EMMessage alloc] initWithConversationID:self.contactUsername from:fromUsername to:self.contactUsername body:messageBody ext:nil];
     // 消息类型：设置为单聊消息（一对一聊天）
     message.chatType = EMChatTypeChat;
-    // 3.发送消息（异步方法）
+    // 2.发送消息（异步方法）
     [[EMClient sharedClient].chatManager sendMessage:message progress:nil completion:^(EMMessage *message, EMError *error) {
         if (!error) {
-            NSLog(@"发送文字消息成功！");
+            NSLog(@"发送消息成功！");
         } else {
-            NSLog(@"发送文字消息失败：%u, %@", error.code, error.errorDescription);
+            // reason：录制的语音文件无效，太小了...
+            NSLog(@"发送消息失败：%u, %@", error.code, error.errorDescription);
         }
     }];
-    // 4.把消息添加到数据源，再刷新表格
+    // 3.把消息添加到数据源，再刷新表格
     [self.messageModelArr addObject:message];
     [self.tableView reloadData];
-    // 5.把消息显示在顶部
+    // 4.把消息显示在顶部
     [self scrollToBottomVisible];
+}
+
+#pragma mark - 发送文本消息
+- (void)sendTextMessage:(NSString *)text {
+    // 构造一个文字的消息体
+    EMTextMessageBody *textMsgBody = [[EMTextMessageBody alloc] initWithText:text];
+    [self sendMessage:textMsgBody];
 }
 
 #pragma mark - 发送语音消息
 - (void)sendVoiceMessage:(NSString *)recordPath duration:(NSInteger)duration {
-    // 1.构造一个语音的消息体 （displayName 会话中列表中，显示的名字）
+    // 构造一个语音的消息体 （displayName 会话中列表中，显示的名字）
     EMVoiceMessageBody *voiceBody = [[EMVoiceMessageBody alloc]initWithLocalPath:recordPath displayName:@"[语音]"];
     voiceBody.duration = (int)duration;
-    // 2.构造消息对象
-    NSString *fromUsername = [[EMClient sharedClient] currentUsername];
-    EMMessage *message = [[EMMessage alloc] initWithConversationID:self.contactUsername from:fromUsername to:self.contactUsername body:voiceBody ext:nil];
-    // 消息类型：单聊
-    message.chatType = EMChatTypeChat;
-    // 3.发送消息（异步方法）
-    [[EMClient sharedClient].chatManager sendMessage:message progress:nil completion:^(EMMessage *message, EMError *error) {
-        if (!error) {
-            NSLog(@"发送语音消息成功！");
-        } else {
-            // reason：录制的语音文件无效，太小了...
-            NSLog(@"发送语音消息失败：%u, %@", error.code, error.errorDescription);
-        }
-    }];
-    // 4.把消息添加到数据源，再刷新表格
-    [self.messageModelArr addObject:message];
-    [self.tableView reloadData];
-    // 5.把消息显示在顶部
-    [self scrollToBottomVisible];
+    [self sendMessage:voiceBody];
+}
+
+#pragma mark - 发送图片消息
+- (void)sendImageMessage:(UIImage *)image {
+    // 构造图片消息体
+    NSData *originalImageData = UIImagePNGRepresentation(image);
+    EMImageMessageBody *imageMsgBody = [[EMImageMessageBody alloc]initWithData:originalImageData thumbnailData:nil];
+    [self sendMessage:imageMsgBody];
 }
 
 - (void)scrollToBottomVisible {
@@ -295,6 +291,29 @@
         _messageModelArr = [[NSMutableArray alloc]init];
     }
     return _messageModelArr;
+}
+
+#pragma mark - 更多按钮事件
+- (IBAction)clickMoreBtn:(UIButton *)sender {
+    NSLog(@"更多");
+    
+    // 显示图片选择的控制器
+    UIImagePickerController *imagePicker = [[UIImagePickerController alloc]init];
+    // 设置源
+    imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    imagePicker.delegate = self;
+    [self presentViewController:imagePicker animated:YES completion:nil];
+    
+}
+
+#pragma mark - 用户选中图片之后的回调
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+    // 获取用户选中的图片
+    UIImage *image = info[UIImagePickerControllerOriginalImage];
+    // 发送图片
+    [self sendImageMessage:image];
+    // 隐藏当前图片选择控制器
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)dealloc {

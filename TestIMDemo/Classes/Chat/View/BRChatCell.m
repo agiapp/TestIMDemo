@@ -44,35 +44,35 @@
         case EMMessageBodyTypeImage:
         {
             // 图片消息
-            EMImageMessageBody *body = (EMImageMessageBody *)msgBody;
-            self.messageLabel.text = @"【图片消息】";
-        }
-            break;
-        case EMMessageBodyTypeLocation:
-        {
-            // 位置消息
-            EMLocationMessageBody *body = (EMLocationMessageBody *)msgBody;
-            self.messageLabel.text = @"【位置消息】";
+            EMImageMessageBody *imageMsgBody = (EMImageMessageBody *)msgBody;
+            [self showImage:imageMsgBody];
         }
             break;
         case EMMessageBodyTypeVoice:
         {
             // 音频消息
-            EMVoiceMessageBody *voiceBody = (EMVoiceMessageBody *)msgBody;
+            EMVoiceMessageBody *voiceMsgBody = (EMVoiceMessageBody *)msgBody;
             self.messageLabel.attributedText = [BRAttributedText voiceAttrText:messageModel isPlaying:NO];
         }
             break;
         case EMMessageBodyTypeVideo:
         {
             // 视频消息
-            EMVideoMessageBody *body = (EMVideoMessageBody *)msgBody;
+            EMVideoMessageBody *videoMsgBody = (EMVideoMessageBody *)msgBody;
             self.messageLabel.text = @"【视频消息】";
+        }
+            break;
+        case EMMessageBodyTypeLocation:
+        {
+            // 位置消息
+            EMLocationMessageBody *locationMsgBody = (EMLocationMessageBody *)msgBody;
+            self.messageLabel.text = @"【位置消息】";
         }
             break;
         case EMMessageBodyTypeFile:
         {
             // 文件消息
-            EMFileMessageBody *body = (EMFileMessageBody *)msgBody;
+            EMFileMessageBody *fileMsgBody = (EMFileMessageBody *)msgBody;
             self.messageLabel.text = @"【文件消息】";
         }
             break;
@@ -80,6 +80,27 @@
         default:
             break;
     }
+}
+
+#pragma mark - 显示图片
+- (void)showImage:(EMImageMessageBody *)imageMsgBody {
+    CGRect thumbFrame = (CGRect){0, 0, imageMsgBody.thumbnailSize};
+    // 设置label的尺寸足够显示UIImageView
+    // 图片附件
+    NSTextAttachment *imageAttachment = [[NSTextAttachment alloc]init];
+    imageAttachment.bounds = thumbFrame;
+    NSAttributedString *attributedString = [NSAttributedString attributedStringWithAttachment:imageAttachment];
+    self.messageLabel.attributedText = attributedString;
+    
+    // 1. 在cell的Label上添加UIImageView
+    UIImageView *imageView = [[UIImageView alloc]init];
+    imageView.frame = thumbFrame;
+    imageView.backgroundColor = [UIColor redColor];
+    [self.messageLabel addSubview:imageView];
+    
+    // 下载图片
+    NSLog(@"缩略图remote路径：%@", imageMsgBody.thumbnailRemotePath);
+    NSLog(@"缩略图local路径：%@", imageMsgBody.thumbnailLocalPath);
 }
 
 - (CGFloat)cellHeight {

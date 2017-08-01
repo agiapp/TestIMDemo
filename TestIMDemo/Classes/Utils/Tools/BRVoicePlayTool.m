@@ -69,6 +69,7 @@ static UIImageView *animatingImageView;
     // 执行动画
     [imageView startAnimating];
     animatingImageView = imageView;
+    
 }
 
 

@@ -143,6 +143,9 @@
                                             <constraint firstAttribute="height" constant="30" id="u4J-u9-8fy"/>
                                         </constraints>
                                         <state key="normal" image="chatBar_more"/>
+                                        <connections>
+                                            <action selector="clickMoreBtn:" destination="odx-ru-wPb" eventType="touchUpInside" id="0Wk-fN-kIe"/>
+                                        </connections>
                                     </button>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WTe-vM-wqe">
                                         <rect key="frame" x="43" y="6" width="251" height="34"/>
