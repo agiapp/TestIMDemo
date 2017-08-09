@@ -33,6 +33,8 @@
 @property (nonatomic, strong) BRChatCell *chatCellTool;
 
 @property (nonatomic, strong) NSMutableArray *messageModelArr;
+// 保存会话对象
+@property (nonatomic, strong) EMConversation *conversation;
 
 @end
 
@@ -55,6 +57,7 @@
 - (void)loadData {
     // 获取一个会话
     EMConversation *conversation = [[EMClient sharedClient].chatManager getConversation:self.contactUsername type:EMConversationTypeChat createIfNotExist:YES];
+    self.conversation = conversation;
     // 加载本地数据库聊天记录
     [conversation loadMessagesStartFromId:nil count:10 searchDirection:EMMessageSearchDirectionUp completion:^(NSArray *aMessages, EMError *aError) {
         if (!aError) {
@@ -81,6 +84,11 @@
     [self.messageModelArr addObject:msgModel];
     // 刷新UI
     [self.tableView reloadData];
+    // 设置消息为已读
+    id error = nil;
+    [self.conversation markMessageAsReadWithId:msgModel.messageId error:&error];
+    NSLog(@"设置消息为已读error = %@", error);
+    
 }
 
 #pragma mark - 键盘显示时会触发的方法
